@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="static/css/style.css">
+	<link rel="stylesheet" type="text/css" href="static/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<title>Clinica</title>
+</head>
+<body>
+	<div class="header d-flex flex-column flex-md-row align-items-center justify-content-md-between p-3 p-md-4 mb-3 border-bottom text-center">
+		<div class="d-flex flex-md-row align-items-center justify-content-md-between">
+			<a href="index.html"><img src="static/images/logo.svg" width="60px" height="60px"></a>
+		</div>
+		<nav class="headerNav">
+			<a href="#chisiamo" class="px-2 style-none">Chi siamo</a>
+			<a href="login.html" class="px-2 style-none">Login</a>
+			<a href="signup.html" class="px-2 style-none">Registrati</a></a>
+		</nav>
+	</div>
+
+	<div class="cont container text-center pt-5">
+		<h2 class="pb-4"><strong>Login Paziente</strong></h2>
+
+		<div class="form">
+			<div class="col-12 col-md-4 offset-md-4">
+				<div class="formWrapper text-md-center">
+					<form>
+						<div class="formRow px-2">
+							<div class="labelWrapper">
+								<label for="email">E-mail</label>
+							</div>
+							<div class="fieldWrapper">
+								<input type="text" name="email" id="email" placeholder="mariorossi@gmail.com">
+							</div>
+							<div class="msg">
+								<p class="error">Campo obbligatorio</p>
+							</div>
+						</div>
+
+						<div class="formRow px-2">
+							<div class="labelWrapper">
+								<label for="password">Password</label>
+							</div>
+							<div class="fieldWrapper">
+								<input type="password" name="password" id="password" placeholder="Password">
+							</div>
+							<div class="msg">
+								<p class="error">Campo obbligatorio</p>
+							</div>
+						</div>
+
+						<div class="formRow">
+							<div class="loginButton">
+								<button type="submit" class="mb-4">Entra</button>
+							</div>
+							<div class="needSignUp">
+								<span>Non sei ancora un paziente registrato? Clicca <a href="signup.html">qui</a> per registrarti.</span>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

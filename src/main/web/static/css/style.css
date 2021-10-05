@@ -1,0 +1,37 @@
+.style-none {
+	text-decoration: none;
+	color: inherit;
+}
+
+.header {
+	font-family: 'Montserrat';
+	background: rgb(154,254,234);
+	background: linear-gradient(180deg, rgba(154,254,234,0.8575805322128851) 35%, rgba(0,212,255,0) 100%);
+}
+
+.cont {
+	font-family: 'Montserrat';
+}
+
+.msg {
+	color: red;
+	font-size: 75%;
+}
+
+.alreadySignedUp {
+	font-size: 15px;
+}
+
+input {
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+}
+
+select {
+	width: 100%;
+	padding-top: 12px;
+	padding-bottom: 13px;
+	padding-left: 10px;
+}
