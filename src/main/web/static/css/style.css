@@ -1,16 +1,49 @@
-.style-none {
-	text-decoration: none;
-	color: inherit;
+body, html {
+	height: 100%;
+}
+
+.hero {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://www.clinicamarciano.it/wp-content/uploads/2021/01/Endoscopia-Clinica.jpg);
+	height: 40vh;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.submitb {
+	background-color: #20c997;
+	width: 50%;
+}
+
+.footer {
+	background-color: rgba(221, 221, 221, 0.23);
+	width: 100%;
 }
 
 .header {
-	font-family: 'Montserrat';
-	background: rgb(154,254,234);
-	background: linear-gradient(180deg, rgba(154,254,234,0.8575805322128851) 35%, rgba(0,212,255,0) 100%);
+	font-family: 'Rubik', sans-serif;
+	width: 100%;
+	background: rgb(116,227,252);
+	background: linear-gradient(0deg, rgba(116,227,252,0) 0%, rgba(116,227,252,0.85) 85%);
+}
+
+.hero {
+	font-family: 'Rubik', sans-serif;
+}
+
+.herosub {
+	position: absolute;
+	left: 25%;
+	top: 25%;
+}
+
+#chisiamo, #prenot {
+	font-family: 'Rubik', sans-serif;
 }
 
 .cont {
-	font-family: 'Montserrat';
+	font-family: 'Rubik', sans-serif;
+	background-color: rgba(221, 221, 221, 0.23);
 }
 
 .msg {
@@ -20,6 +53,10 @@
 
 .alreadySignedUp {
 	font-size: 15px;
+}
+
+.content {
+	background-color: rgb(245, 245, 245);
 }
 
 input {
