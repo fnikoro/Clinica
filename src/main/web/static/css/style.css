@@ -72,3 +72,20 @@ select {
 	padding-bottom: 13px;
 	padding-left: 10px;
 }
+
+
+#loggedUserMenu{
+	position:fixed;
+	max-width: 300px;
+	width: 80%;
+	right: -300px;
+	top: 0;
+	z-index: 1000;
+	background-color: #0f5132;
+	color: #fff;
+	transition: all 0.5s ease-in-out;
+}
+
+#loggedUserMenu.open{
+	right: 0
+}
