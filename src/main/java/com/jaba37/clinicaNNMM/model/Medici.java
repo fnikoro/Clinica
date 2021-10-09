@@ -49,7 +49,7 @@ public class Medici {
 
     //ADDED
     @Transient
-    private static final String DATE_FORMATTER = "dd-MM-yyyy HH:mm";
+    private final String DATE_FORMATTER = "dd-MM-yyyy HH:mm";
 
     @OneToMany(mappedBy = "medici")
     private List<Visite> visitis;
@@ -78,50 +78,8 @@ public class Medici {
         this.password = password;
     }
 
-    //ADDED
-    public void initializeDisponibilita() {
-        for (int i = 0; i < getNumeroBlocchiOrari(); i++) {
-            disponibilita[i] = true;
-        }
-    }
-
-    //ADDED
-    public void initializeListaOrariDisponibili() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
-        LocalDate today = LocalDate.now();
-        LocalDate startOfBooking = today.plusDays(7);
-        LocalDate endOfBooking = LocalDate.of(2021, Month.NOVEMBER, 30);
-        int daysBetween = (int) ChronoUnit.DAYS.between(startOfBooking, endOfBooking);
-
-        LocalDateTime dataOra = startOfBooking.atTime(8, 0);
-        String formatDateTime = "";
-
-
-        for (int i = 0; i <= daysBetween; i++) {
-            for (int k = 0; k < NUMERO_BLOCCHI_ORARI; k++) {
-
-                if(dataOra.getDayOfWeek() == DayOfWeek.SUNDAY){
-                    dataOra = dataOra.plusDays(1);
-                    dataOra = dataOra.withHour(8);
-                    dataOra = dataOra.withMinute(0);
-                    break;
-                }
-
-                if ((dataOra.getHour() == 13) && (dataOra.getMinute() == 0)) {
-                    dataOra = dataOra.plusHours(1);
-                }
-
-                formatDateTime = dataOra.format(formatter);
-                listaOrari.add(formatDateTime);
-                dataOra = dataOra.plusMinutes(30);
-
-                if ((dataOra.getHour() == 18) && (dataOra.getMinute() == 0)) {
-                    dataOra = dataOra.plusDays(1);
-                    dataOra = dataOra.withHour(8);
-                    dataOra = dataOra.withMinute(0);
-                }
-            }
-        }
+    public boolean setDisponibilitaAtIndex(Integer i, boolean value){
+        return this.disponibilita[i] = value;
     }
 
     public Integer getId_medico() {
@@ -154,7 +112,7 @@ public class Medici {
     }
 
     //ADDED
-    public static int getNumeroBlocchiOrari() {
+    public int getNumeroBlocchiOrari() {
         return NUMERO_BLOCCHI_ORARI;
     }
 
@@ -162,4 +120,15 @@ public class Medici {
     public List<String> getListaOrari() {
         return listaOrari;
     }
+
+    //ADDED
+    public String getDateFormatter() {
+        return this.DATE_FORMATTER;
+    }
+
+    //ADDED
+    public boolean add(Object o) {
+        return this.listaOrari.add((String) o);
+    }
+
 }

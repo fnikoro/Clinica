@@ -13,7 +13,7 @@ public class Visite {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_visite")
     private Integer id_visite;
-
+                        //timestamp
     @Temporal(TemporalType.DATE)
     @Column(name = "data_prenotazione")
     private Date data_prenotazione;
@@ -32,5 +32,15 @@ public class Visite {
         return id_visite;
     }
 
+    public Date getData_prenotazione() {
+        return data_prenotazione;
+    }
 
+    public Pazienti getPazienti() {
+        return pazienti;
+    }
+
+    public Medici getMedici() {
+        return medici;
+    }
 }

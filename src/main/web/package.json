@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "browser-sync start --server --files 'dist/css/.css, **/.html'",
-    "watch:css": "onchange 'src/css' -- npm run css",
+    "watch:css": "onchange 'static/css' -- npm run css",
     "start": "run-p serve watch:css"
   },
   "author": "nic",
