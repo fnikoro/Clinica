@@ -1,8 +1,11 @@
 package com.jaba37.clinicaNNMM.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -14,9 +17,9 @@ public class Visite {
     @Column(name = "id_visite")
     private Integer id_visite;
                         //timestamp
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_prenotazione")
-    private Date data_prenotazione;
+    private Timestamp data_prenotazione;
 
     @JoinColumn(name = "id_paziente")
     @ManyToOne
@@ -32,8 +35,8 @@ public class Visite {
         return id_visite;
     }
 
-    public Date getData_prenotazione() {
-        return data_prenotazione;
+    public LocalDateTime getData_prenotazione() {
+        return data_prenotazione.toLocalDateTime();
     }
 
     public Pazienti getPazienti() {

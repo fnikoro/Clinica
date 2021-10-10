@@ -1,14 +1,6 @@
 package com.jaba37.clinicaNNMM.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 @Entity
@@ -35,9 +27,25 @@ public class Medici {
     @Column(name = "password")
     private String password;
 
+//    //ADDED
+//    @Transient
+//    private static final int NUMERO_BLOCCHI_ORARI = 18;
+//
+//    //ADDED
+//    @Transient
+//    private static final int NUMERO_GIORNI = 30;
+
     //ADDED
     @Transient
-    private boolean[] disponibilita = new boolean[NUMERO_BLOCCHI_ORARI];
+    public static final int NUMERO_BLOCCHI_ORARI = 18;
+
+    //ADDED
+    @Transient
+    public static final int NUMERO_GIORNI = 30;
+
+    //ADDED
+    @Transient
+    private Object[][] disponibilita = new Object[NUMERO_GIORNI][NUMERO_BLOCCHI_ORARI];
 
     //ADDED
     @Transient
@@ -45,11 +53,7 @@ public class Medici {
 
     //ADDED
     @Transient
-    private static final int NUMERO_BLOCCHI_ORARI = 18;
-
-    //ADDED
-    @Transient
-    private final String DATE_FORMATTER = "dd-MM-yyyy HH:mm";
+    private final String DATE_FORMATTER = "dd-MM-yyyy HH:mm:ss";
 
     @OneToMany(mappedBy = "medici")
     private List<Visite> visitis;
@@ -78,8 +82,9 @@ public class Medici {
         this.password = password;
     }
 
-    public boolean setDisponibilitaAtIndex(Integer i, boolean value){
-        return this.disponibilita[i] = value;
+    //ADDED
+    public void setDisponibilitaAtIndexInDayJ(Integer j, Integer index, boolean value){
+         this.disponibilita[j][index] = value;
     }
 
     public Integer getId_medico() {
@@ -107,18 +112,33 @@ public class Medici {
     }
 
     //ADDED
-    public boolean[] getDisponibilita() {
+    public Object[][] getDisponibilita() {
         return disponibilita;
     }
 
     //ADDED
-    public int getNumeroBlocchiOrari() {
-        return NUMERO_BLOCCHI_ORARI;
+    public boolean getDisponibilitaAtIndexInDayJ(Integer j, Integer index) {
+        return (boolean) disponibilita[j][index];
     }
+
+
+    //ADDED
+//    public int getNumeroBlocchiOrari() {
+//        return NUMERO_BLOCCHI_ORARI;
+//    }
+
+    //ADDED
+//    public int getNumeroGiorni() {
+//        return NUMERO_GIORNI;
+//    }
 
     //ADDED
     public List<String> getListaOrari() {
         return listaOrari;
+    }
+
+    public String getListaOrariAtIndex (Integer index){
+        return listaOrari.get(index);
     }
 
     //ADDED

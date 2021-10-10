@@ -21,6 +21,12 @@ public class MediciController {
         return mediciService.getMedici();
     }
 
+    //ADDED
+    @GetMapping("/get-medici-disponibili")
+    public List<Medici> getMediciDisponibili() {
+        return mediciService.getMediciDisponibili();
+    }
+
     @GetMapping("/get-medici/{id}")
     public Medici getMediciById(@PathVariable("id") Integer id) {
         return mediciService.getMediciById(id);

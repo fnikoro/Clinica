@@ -25,11 +25,6 @@ public class VisiteDao {
 //  invio email a paziente e medico
 //  cancellare visita, liberare blocco orario a medico
 
-    //HashMap<Integer, Boolean[]> map = new HashMap();
-    //Boolean[] blocchi_Orario = map.get();
-    //blocchi_orario[1][1] = false;
-
-
     @Autowired
     private EntityManager entityManager;
 

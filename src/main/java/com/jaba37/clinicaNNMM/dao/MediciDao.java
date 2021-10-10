@@ -2,7 +2,6 @@ package com.jaba37.clinicaNNMM.dao;
 
 import com.jaba37.clinicaNNMM.model.Medici;
 import com.jaba37.clinicaNNMM.model.Visite;
-import org.apache.tomcat.jni.Local;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,11 @@ import javax.persistence.EntityManager;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
+import static com.jaba37.clinicaNNMM.model.Medici.NUMERO_BLOCCHI_ORARI;
+import static com.jaba37.clinicaNNMM.model.Medici.NUMERO_GIORNI;
 
 @Repository
 public class MediciDao {
@@ -27,24 +28,57 @@ public class MediciDao {
         return currentSession.createQuery("FROM Medici", Medici.class).getResultList();
     }
 
+    //ADDED
+    public List<Medici> getMediciDisponibili() {
+        List<Medici> listaMedici = getMedici();
+        List<Medici> listaMediciDisponibili = new ArrayList<>();
+        int controlloInclusione;
+
+        initializeDisponibilita(listaMedici);
+
+        updateDisponibilitaMedici(listaMedici);
+
+        for (int i = 0; i < listaMedici.size(); i++) {
+            controlloInclusione = 0;
+
+            for (int k = 0; k < NUMERO_GIORNI; k++) {
+                if (controlloInclusione == 1) {
+                    break;
+                }
+
+                for (int j = 0; j < NUMERO_BLOCCHI_ORARI; j++) {
+
+                    //NON SEMPLIFICARE, romperebbe la logica in quanto "Not" darebbe il risultato opposto al risultato effettivo
+                    if (listaMedici.get(i).getDisponibilitaAtIndexInDayJ(k, j) == true) {
+                        controlloInclusione++;
+                        listaMediciDisponibili.add(listaMedici.get(i));
+                        break;
+                    }
+                }
+            }
+        }
+        return listaMediciDisponibili;
+    }
+
     public Medici getMediciById(Integer id) {
         Session currentSession = entityManager.unwrap(Session.class);
         return currentSession.find(Medici.class, id);
     }
 
     //ADDED
-    public void createMediciDisponibilita(Medici medico) {
+    private void createMediciDisponibilita(Medici medico) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(medico.getDateFormatter());
         LocalDate today = LocalDate.now();
         LocalDate startOfBooking = today.plusDays(7);
-        LocalDate endOfBooking = LocalDate.of(2021, Month.NOVEMBER, 30);
+        LocalDate endOfBooking = today.plusDays(37);
+//        LocalDate endOfBooking = LocalDate.of(2021, Month.NOVEMBER, 30);
         int daysBetween = (int) ChronoUnit.DAYS.between(startOfBooking, endOfBooking);
 
         LocalDateTime dataOra = startOfBooking.atTime(8, 0);
         String formatDateTime = "";
 
         for (int i = 0; i <= daysBetween; i++) {
-            for (int k = 0; k < medico.getNumeroBlocchiOrari(); k++) {
+            for (int k = 0; k < NUMERO_BLOCCHI_ORARI; k++) {
 
                 if (dataOra.getDayOfWeek() == DayOfWeek.SUNDAY) {
                     dataOra = dataOra.plusDays(1);
@@ -71,37 +105,56 @@ public class MediciDao {
     }
 
     //ADDED
-    public void initializeDisponibilita(Medici medico) {
-        Arrays.fill(medico.getDisponibilita(), true);
+    private void initializeDisponibilita(List<Medici> medicis) {
+        for (int i = 0; i < medicis.size(); i++) {
+            createMediciDisponibilita(medicis.get(i));
+            for (int k = 0; k < NUMERO_GIORNI; k++) {
+                for (int j = 0; j < NUMERO_BLOCCHI_ORARI; j++) {
+                    medicis.get(i).setDisponibilitaAtIndexInDayJ(k, j, true);
+                }
+            }
+        }
     }
 
     //ADDED
-    public void updateDisponibilitaMedici(List<Medici> medicis) {
-        Instant conversione_firstStep;
-        LocalDateTime conversione_secondStep;
+    private void updateDisponibilitaMedici(List<Medici> medicis) {
         String dataPrenotazione_Visita = "";
+        int indiceListaOrario;
+        int controlloInvocazioneBreak;
 
         Session currentSession = entityManager.unwrap(Session.class);
         Query<Visite> getVisite = currentSession.createQuery("FROM Visite", Visite.class);
         List<Visite> listaVisite = getVisite.getResultList();
+
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(medicis.get(1).getDateFormatter());
 
         for (int i = 0; i < medicis.size(); i++) {
 
             for (int k = 0; k < listaVisite.size(); k++) {
-                conversione_firstStep = listaVisite.get(k).getData_prenotazione().toInstant();
-                conversione_secondStep = LocalDateTime.from(conversione_firstStep);
-                dataPrenotazione_Visita = conversione_secondStep.format(formatter);
-
+              dataPrenotazione_Visita = listaVisite.get(k).getData_prenotazione().format(formatter);
+                controlloInvocazioneBreak = 0;
+                indiceListaOrario = 0;
                 if ((medicis.get(i).getId_medico().equals(listaVisite.get(k).getMedici().getId_medico()))) {
 
-                    for (int j = 0; j < medicis.get(i).getListaOrari().size(); j++) {
+                    for (int j = 0; j < NUMERO_GIORNI; j++) {
 
-                        if (medicis.get(i).getListaOrari().get(j).equals(dataPrenotazione_Visita)) {
-                            medicis.get(i).setDisponibilitaAtIndex(j, false);
-                        } else {
-                            medicis.get(i).setDisponibilitaAtIndex(j, true); //unsure
+                        if(controlloInvocazioneBreak != 0) {
+                            break;
+                        }
+
+                        for (int q = 0; q < NUMERO_BLOCCHI_ORARI; q++) {
+
+                            if (medicis.get(i).getListaOrariAtIndex(indiceListaOrario).equals(dataPrenotazione_Visita)) {
+                                medicis.get(i).setDisponibilitaAtIndexInDayJ(j, q, false);
+                            } else {
+                                medicis.get(i).setDisponibilitaAtIndexInDayJ(j, q, true); //unsure
+                            }
+                            indiceListaOrario++;
+                            if(indiceListaOrario == medicis.get(i).getListaOrari().size()){
+                                controlloInvocazioneBreak++;
+                                break;
+                            }
                         }
                     }
                 }
@@ -130,6 +183,4 @@ public class MediciDao {
 
         currentSession.delete(currentSession.find(Medici.class, id));
     }
-
-
 }
