@@ -1,8 +1,7 @@
 package com.jaba37.clinicaNNMM.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,7 +14,7 @@ public class Medici {
     private Integer id_medico;
 
     @Column(name = "nome")
-    private String nome_;
+    private String nome;
 
     @Column(name = "cognome")
     private String cognome;
@@ -29,6 +28,26 @@ public class Medici {
     @Column(name = "password")
     private String password;
 
+    //ADDED
+    @Transient
+    public static final int NUMERO_BLOCCHI_ORARI = 18;
+
+    //ADDED
+    @Transient
+    public static final int NUMERO_GIORNI = 30;
+
+    //ADDED
+    @Transient
+    private Object[][] disponibilita = new Object[NUMERO_GIORNI][NUMERO_BLOCCHI_ORARI];
+
+    //ADDED
+    @Transient
+    private List<String> listaOrari = new ArrayList<>();
+
+    //ADDED
+    @Transient
+    private final String DATE_FORMATTER = "dd-MM-yyyy HH:mm:ss";
+
     @OneToMany(mappedBy = "medici")
     private List<Visite> visitis;
 
@@ -36,9 +55,59 @@ public class Medici {
     @OneToOne
     private Reparti reparto;
 
-    public Integer getId_medico() {
-        return id_medico;
+    //ADDED
+    public void setDisponibilitaAtIndexInDayJ(Integer j, Integer index, boolean value) {
+        this.disponibilita[j][index] = value;
     }
 
+    public Integer getId_medico() {
+        return this.id_medico;
+    }
 
+    public String getNome() {
+        return this.nome;
+    }
+
+    public String getCognome() {
+        return this.cognome;
+    }
+
+    public String getNumero_cellulare() {
+        return this.numero_cellulare;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public Object[][] getDisponibilita() {
+        return disponibilita;
+    }
+
+    //ADDED
+    public boolean getDisponibilitaAtIndexInDayJ(Integer j, Integer index) {
+        return (boolean) disponibilita[j][index];
+    }
+
+    //ADDED
+    public List<String> getListaOrari() {
+        return listaOrari;
+    }
+
+    public String getListaOrariAtIndex (Integer index){
+        return listaOrari.get(index);
+    }
+
+    //ADDED
+    public String getDateFormatter() {
+        return this.DATE_FORMATTER;
+    }
+    //ADDED
+    public boolean add(Object o) {
+        return this.listaOrari.add((String) o);
+    }
 }

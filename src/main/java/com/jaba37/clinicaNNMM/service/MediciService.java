@@ -19,6 +19,11 @@ public class MediciService {
         return MediciDao.getMedici();
     }
 
+    //ADDED
+    public List<Medici> getMediciDisponibili() {
+        return MediciDao.getMediciDisponibili();
+    }
+
     public Medici getMediciById(Integer id) {
         return MediciDao.getMediciById(id);
     }
