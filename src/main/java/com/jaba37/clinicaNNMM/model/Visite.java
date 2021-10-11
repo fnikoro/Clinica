@@ -47,4 +47,24 @@ public class Visite {
     public Medici getMedici() {
         return medici;
     }
+
+    public Integer getMediciId() {
+        return this.medici.getId_medico();
+    }
+
+    public void setId_visite(Integer id_visite) {
+        this.id_visite = id_visite;
+    }
+
+    public void setData_prenotazione(Timestamp data_prenotazione) {
+        this.data_prenotazione = data_prenotazione;
+    }
+
+    public void setPazienti(Pazienti pazienti) {
+        this.pazienti = pazienti;
+    }
+
+    public void setMedici(Medici medici) {
+        this.medici = medici;
+    }
 }

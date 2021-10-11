@@ -40,11 +40,16 @@ form.addEventListener('submit', function (event) {
 
     let id_reparto = document.querySelector("#id_reparto");
     let id_medico = document.querySelector("#id_medico");
+    let id_utente_confermato = document.querySelector("#id_utente_confermato");
+    // let id_utente = 1;
+    // let id_medico = 1;
+    console.log(id_utente_confermato)
+    console.log(id_medico)
     let data_prenotazione = document.querySelector("#data_prenotazione");
     var data = JSON.stringify({
         // id_reparto: id_reparto.value,
         id_medico: id_medico.value,
-        id_utente: 1,
+        id_utente: id_utente_confermato.value,
         data_prenotazione: data_prenotazione.value
     });
 
@@ -56,11 +61,12 @@ form.addEventListener('submit', function (event) {
         },
     })
         .then(resp => {
+            console.log(data)
             if (resp.status !== 200) {
                 console.log("Status: " + resp.status)
                 return Promise.reject("server")
             } else {
-                console.log("")
+                console.log("Input registrato, attenzione ai null")
             }
         })
         .catch(err => {

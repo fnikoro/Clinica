@@ -111,4 +111,44 @@ public class Medici {
     public boolean add(Object o) {
         return this.listaOrari.add((String) o);
     }
+
+    public void setId_medico(Integer id_medico) {
+        this.id_medico = id_medico;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public void setNumero_cellulare(String numero_cellulare) {
+        this.numero_cellulare = numero_cellulare;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setDisponibilita(Object[][] disponibilita) {
+        this.disponibilita = disponibilita;
+    }
+
+    public void setListaOrari(List<String> listaOrari) {
+        this.listaOrari = listaOrari;
+    }
+
+    public void setVisitis(List<Visite> visitis) {
+        this.visitis = visitis;
+    }
+
+    public void setReparto(Reparti reparto) {
+        this.reparto = reparto;
+    }
 }

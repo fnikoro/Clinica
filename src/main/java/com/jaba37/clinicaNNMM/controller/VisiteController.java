@@ -5,6 +5,7 @@ import com.jaba37.clinicaNNMM.model.Visite;
 import com.jaba37.clinicaNNMM.service.VisiteService;
 import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

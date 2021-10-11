@@ -114,4 +114,12 @@ public class Pazienti {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<Visite> getVisitis() {
+        return visitis;
+    }
+
+    public void setVisitis(List<Visite> visitis) {
+        this.visitis = visitis;
+    }
 }

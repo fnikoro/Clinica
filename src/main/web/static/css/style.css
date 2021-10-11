@@ -103,5 +103,8 @@ select {
 .titolo {
 	padding-bottom: 5%;
 }
-
+/* ADDED */
+.display-none {
+	display: none;
+}
 

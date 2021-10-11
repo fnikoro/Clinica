@@ -24,4 +24,24 @@ public class Reparti {
     public Integer getId_reparto() {
         return id_reparto;
     }
+
+    public String getReparto() {
+        return reparto;
+    }
+
+    public Medici getMedico() {
+        return medico;
+    }
+
+    public void setId_reparto(Integer id_reparto) {
+        this.id_reparto = id_reparto;
+    }
+
+    public void setReparto(String reparto) {
+        this.reparto = reparto;
+    }
+
+    public void setMedico(Medici medico) {
+        this.medico = medico;
+    }
 }
