@@ -21,6 +21,7 @@ import static com.jaba37.clinicaNNMM.model.Medici.NUMERO_GIORNI;
 
 @Repository
 public class MediciDao {
+
     @Autowired
     private EntityManager entityManager;
 
@@ -72,7 +73,6 @@ public class MediciDao {
         LocalDate today = LocalDate.now();
         LocalDate startOfBooking = today.plusDays(7);
         LocalDate endOfBooking = today.plusDays(37);
-//        LocalDate endOfBooking = LocalDate.of(2021, Month.NOVEMBER, 30);
         int daysBetween = (int) ChronoUnit.DAYS.between(startOfBooking, endOfBooking);
 
         LocalDateTime dataOra = startOfBooking.atTime(8, 0);

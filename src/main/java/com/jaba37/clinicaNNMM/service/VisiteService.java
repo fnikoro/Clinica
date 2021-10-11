@@ -23,6 +23,10 @@ public class VisiteService {
         return VisiteDao.getVisiteById(id);
     }
 
+    public List<Visite> getVisiteByUserId(Integer id) {
+        return VisiteDao.getVisiteByUserId(id);
+    }
+
     public void saveOrUpdateVisite(List<Visite> visites) {
         VisiteDao.saveOrUpdateVisite(visites);
     }

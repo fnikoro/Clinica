@@ -26,6 +26,11 @@ public class VisiteController {
         return visiteService.getVisiteById(id);
     }
 
+    @GetMapping("/get-visite-by-user/{id}")
+    public List<Visite> getVisiteByUserId(@PathVariable("id") Integer id) {
+        return visiteService.getVisiteByUserId(id);
+    }
+
     @PostMapping("/save-visite")
     public void saveVisite(@RequestBody @NotNull List<Visite> visitis) {
         visiteService.saveOrUpdateVisite(visitis);

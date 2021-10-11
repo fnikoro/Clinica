@@ -2,6 +2,7 @@ package com.jaba37.clinicaNNMM.dao;
 
 import com.jaba37.clinicaNNMM.model.Visite;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +24,11 @@ public class VisiteDao {
         Session currentSession = entityManager.unwrap(Session.class);
         Visite v = currentSession.find(Visite.class, id);
         return v;
+    }
+
+    public List<Visite> getVisiteByUserId(Integer id){
+        Session currentSession = entityManager.unwrap(Session.class);
+        return currentSession.createQuery("FROM Visite WHERE pazienti.id_paziente = :id", Visite.class).setParameter("id", id).getResultList();
     }
 
     public void saveOrUpdateVisite(List<Visite> Visites) {
