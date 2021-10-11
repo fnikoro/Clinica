@@ -24,6 +24,4 @@ public class Reparti {
     public Integer getId_reparto() {
         return id_reparto;
     }
-
-
 }

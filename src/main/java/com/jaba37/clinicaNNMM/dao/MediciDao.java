@@ -67,6 +67,36 @@ public class MediciDao {
         return currentSession.find(Medici.class, id);
     }
 
+    //ADDED
+    public List<String> getListaOrariDisponibiliByMedicoId(Integer id) {
+
+        List<String> listaOrariDisponibili = new ArrayList<>();
+        List<Medici> listaMediciDisponibili = getMediciDisponibili();
+        int indicePosizioneListaOrario = 0;
+        int controlloInvocazioneBreak = 0;
+
+        for (int i = 0; i < NUMERO_GIORNI; i++) {
+            if(controlloInvocazioneBreak != 0){
+                break;
+            }
+
+            for (int k = 0; k < NUMERO_BLOCCHI_ORARI; k++) {
+
+                //NON SEMPLIFICARE, romperebbe la logica in quanto "Not" darebbe il risultato opposto al risultato effettivo
+                if (listaMediciDisponibili.get(id).getDisponibilitaAtIndexInDayJ(i, k) == true) {
+                    listaOrariDisponibili.add(listaMediciDisponibili.get(id).getListaOrariAtIndex(indicePosizioneListaOrario));
+                }
+                indicePosizioneListaOrario++;
+
+                if(indicePosizioneListaOrario == listaMediciDisponibili.get(id).getListaOrari().size()) {
+                    controlloInvocazioneBreak++;
+                    break;
+                }
+            }
+        }
+        return listaOrariDisponibili;
+    }
+
     public List<Medici> getMediciByIdReparto(Integer id) {
     Session currentSession = entityManager.unwrap(Session.class);
     return currentSession.createQuery("FROM Medici  WHERE Medici.reparto.id_reparto = :id ", Medici.class).setParameter("id", id).getResultList();

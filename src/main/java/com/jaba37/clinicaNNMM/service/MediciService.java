@@ -25,8 +25,14 @@ public class MediciService {
         return MediciDao.getMediciDisponibili();
     }
 
+    //ADDED
     public List<Medici> getMediciByIdReparto (Integer id) {
         return MediciDao.getMediciByIdReparto(id);
+    }
+
+    //ADDED
+    public List<String> getListaOrariDisponibiliByMedicoId(Integer id) {
+        return MediciDao.getListaOrariDisponibiliByMedicoId(id);
     }
 
     public Medici getMediciById(Integer id) {

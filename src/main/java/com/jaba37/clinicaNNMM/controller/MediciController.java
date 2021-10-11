@@ -27,6 +27,12 @@ public class MediciController {
     }
 
     //ADDED
+    @GetMapping("/get-lista-orari-medico/{id}")
+    public List<String> getListaOrariDisponibiliByMedicoId(@PathVariable("id") Integer id) {
+        return mediciService.getListaOrariDisponibiliByMedicoId(id);
+    }
+
+    //ADDED
     @GetMapping("/get-medici-by-reparto/{id}")
     public List<Medici> getMediciByIdReparto(@PathVariable("id") Integer id) {
         return mediciService.getMediciByIdReparto(id);

@@ -24,6 +24,7 @@ public class Visite {
     @ManyToOne
     @JsonIgnoreProperties("visite")
     private Pazienti pazienti;
+
     @JoinColumn(name = "id_medico")
     @ManyToOne
     @JsonIgnoreProperties("visite")
