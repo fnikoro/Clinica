@@ -2,6 +2,7 @@ package com.jaba37.clinicaNNMM.service;
 
 import com.jaba37.clinicaNNMM.dao.MediciDao;
 import com.jaba37.clinicaNNMM.model.Medici;
+import com.jaba37.clinicaNNMM.model.Visite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,10 @@ public class MediciService {
     //ADDED
     public List<Medici> getMediciDisponibili() {
         return MediciDao.getMediciDisponibili();
+    }
+
+    public List<Medici> getMediciByIdReparto (Integer id) {
+        return MediciDao.getMediciByIdReparto(id);
     }
 
     public Medici getMediciById(Integer id) {

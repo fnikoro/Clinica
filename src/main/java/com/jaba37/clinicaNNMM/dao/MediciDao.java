@@ -67,6 +67,11 @@ public class MediciDao {
         return currentSession.find(Medici.class, id);
     }
 
+    public List<Medici> getMediciByIdReparto(Integer id) {
+    Session currentSession = entityManager.unwrap(Session.class);
+    return currentSession.createQuery("FROM Medici  WHERE Medici.reparto.id_reparto = :id ", Medici.class).setParameter("id", id).getResultList();
+    }
+
     //ADDED
     private void createMediciDisponibilita(Medici medico) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(medico.getDateFormatter());
