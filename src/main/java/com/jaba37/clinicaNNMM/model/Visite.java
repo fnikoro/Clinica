@@ -1,5 +1,6 @@
 package com.jaba37.clinicaNNMM.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.tomcat.jni.Local;
 
@@ -17,6 +18,7 @@ public class Visite {
     @Column(name = "id_visite")
     private Integer id_visite;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "data_prenotazione")
     private Timestamp data_prenotazione;
 

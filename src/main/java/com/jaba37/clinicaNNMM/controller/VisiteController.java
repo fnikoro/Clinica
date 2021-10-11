@@ -32,9 +32,14 @@ public class VisiteController {
         return visiteService.getVisiteByUserId(id);
     }
 
+//    @PostMapping("/save-visite")
+//    public void saveVisite(@RequestBody @NotNull List<Visite> visitis) {
+//        visiteService.saveOrUpdateVisite(visitis);
+//    }
+
     @PostMapping("/save-visite")
-    public void saveVisite(@RequestBody @NotNull List<Visite> visitis) {
-        visiteService.saveOrUpdateVisite(visitis);
+    public void saveVisite(@RequestBody @NotNull Visite visita) {
+        visiteService.saveOrUpdateVisite(visita);
     }
 
     @DeleteMapping("/cancella-visite")

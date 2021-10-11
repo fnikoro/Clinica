@@ -89,3 +89,18 @@ select {
 #loggedUserMenu.open{
 	right: 0
 }
+.iconm{
+	width: 5%;
+}
+.facebook{
+	max-width: 10%;
+}
+.instagram{
+	max-width: 10%;
+}
+.footer{
+	background-color:rgb(154,254,234) ;
+}
+.titolo {
+	padding-bottom: 5%;
+}

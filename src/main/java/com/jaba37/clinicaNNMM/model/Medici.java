@@ -46,7 +46,8 @@ public class Medici {
 
     //ADDED
     @Transient
-    private final String DATE_FORMATTER = "dd-MM-yyyy HH:mm:ss";
+    private final String DATE_FORMATTER = "yyyy-MM-dd HH:mm:ss";
+//    private final String DATE_FORMATTER = "dd-MM-yyyy HH:mm:ss";
 
     @OneToMany(mappedBy = "medici")
     private List<Visite> visitis;

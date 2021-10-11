@@ -5,16 +5,18 @@ let selectMedico = document.getElementById("id_medico")
 let primoId = document.getElementById("primo")
 let secondoId = document.getElementById("secondo")
 let scala = document.querySelector('#data_prenotazione')
+//added
+let dataFetchOrari;
 
 window.addEventListener('load', function (event) {
     selectReparto.addEventListener("change", mediciSelect);
     selectMedico.addEventListener("change", orariSelect);
-    event.preventDefault();
+    // event.preventDefault();
 })
 
 form.addEventListener('submit', function (event) {
     let formValidity = true;
-    event.preventDefault();
+    // event.preventDefault();
 
     fields.forEach(function (el, i, ar) {
         if (el.value === 0) {
@@ -40,8 +42,9 @@ form.addEventListener('submit', function (event) {
     let id_medico = document.querySelector("#id_medico");
     let data_prenotazione = document.querySelector("#data_prenotazione");
     var data = JSON.stringify({
-        id_reparto: id_reparto.value,
+        // id_reparto: id_reparto.value,
         id_medico: id_medico.value,
+        id_utente: 1,
         data_prenotazione: data_prenotazione.value
     });
 
@@ -90,6 +93,7 @@ function orariSelect() {
     fetch(urlGetListaOrariMedico).then(function (response) {
         return response.json()
     }).then(function (data) {
+        dataFetchOrari = data;
         let dat = Object.values(data)
         console.log(dat)
 

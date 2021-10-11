@@ -27,8 +27,12 @@ public class VisiteService {
         return VisiteDao.getVisiteByUserId(id);
     }
 
-    public void saveOrUpdateVisite(List<Visite> visites) {
-        VisiteDao.saveOrUpdateVisite(visites);
+//    public void saveOrUpdateVisite(List<Visite> visites) {
+//        VisiteDao.saveOrUpdateVisite(visites);
+//    }
+
+    public void saveOrUpdateVisite(Visite visita) {
+        VisiteDao.saveOrUpdateVisite(visita);
     }
 
     public void deleteVisite(List<Visite> visites) {

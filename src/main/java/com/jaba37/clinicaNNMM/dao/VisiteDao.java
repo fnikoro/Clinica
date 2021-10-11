@@ -31,14 +31,19 @@ public class VisiteDao {
         return currentSession.createQuery("FROM Visite WHERE pazienti.id_paziente = :id", Visite.class).setParameter("id", id).getResultList();
     }
 
-    public void saveOrUpdateVisite(List<Visite> Visites) {
-        Session currentSession = entityManager.unwrap(Session.class);
-        Session updateSession = entityManager.unwrap(Session.class);
+//    public void saveOrUpdateVisite(List<Visite> Visites) {
+//        Session currentSession = entityManager.unwrap(Session.class);
+//        Session updateSession = entityManager.unwrap(Session.class);
+//
+//        for (Visite v : Visites) {
+//            updateSession.saveOrUpdate(v);
+//            currentSession.saveOrUpdate(v);
+//        }
+//    }
 
-        for (Visite v : Visites) {
-            updateSession.saveOrUpdate(v);
-            currentSession.saveOrUpdate(v);
-        }
+    public void saveOrUpdateVisite(Visite visita) {
+        Session currentSession = entityManager.unwrap(Session.class);
+        currentSession.saveOrUpdate(visita);
     }
 
     public void deleteVisite(List<Visite> Visites) {
