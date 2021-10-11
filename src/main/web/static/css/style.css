@@ -72,8 +72,6 @@ select {
 	padding-bottom: 13px;
 	padding-left: 10px;
 }
-
-
 #loggedUserMenu{
 	position:fixed;
 	max-width: 300px;
@@ -81,11 +79,29 @@ select {
 	right: -300px;
 	top: 0;
 	z-index: 1000;
-	background-color: #0f5132;
+	background-color: rgb(116,227,252);
 	color: #fff;
 	transition: all 0.5s ease-in-out;
+	margin-top: 5%;
 }
 
 #loggedUserMenu.open{
 	right: 0
 }
+.iconm{
+	width: 5%;
+}
+.facebook{
+	max-width: 10%;
+}
+.instagram{
+	max-width: 10%;
+}
+.footer{
+	background-color:rgb(154,254,234) ;
+}
+.titolo {
+	padding-bottom: 5%;
+}
+
+
