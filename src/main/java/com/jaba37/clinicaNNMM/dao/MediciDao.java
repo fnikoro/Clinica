@@ -97,9 +97,12 @@ public class MediciDao {
         return listaOrariDisponibili;
     }
 
+    //ADDED
     public List<Medici> getMediciByIdReparto(Integer id) {
     Session currentSession = entityManager.unwrap(Session.class);
-    return currentSession.createQuery("FROM Medici  WHERE Medici.reparto.id_reparto = :id ", Medici.class).setParameter("id", id).getResultList();
+    Query<Medici> query = currentSession.createQuery("FROM Medici  WHERE reparto.id_reparto = " + id , Medici.class);
+//    query.setParameter("id", id);
+    return query.getResultList();
     }
 
     //ADDED

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping
 public class MediciController {
@@ -32,9 +33,15 @@ public class MediciController {
         return mediciService.getListaOrariDisponibiliByMedicoId(id);
     }
 
+//    //ADDED
+//    @GetMapping("/get-medici-by-reparto/{id}")
+//    public List<Medici> getMediciByIdReparto(@RequestParam(value="id",required = true) /*@PathVariable("id")*/ Integer id) {
+//        return mediciService.getMediciByIdReparto(id);
+//    }
+
     //ADDED
     @GetMapping("/get-medici-by-reparto/{id}")
-    public List<Medici> getMediciByIdReparto(@PathVariable("id") Integer id) {
+    public List<Medici> getMediciByIdReparto(/*@RequestParam(value="id",required = true)*/ @PathVariable("id") Integer id) {
         return mediciService.getMediciByIdReparto(id);
     }
 
