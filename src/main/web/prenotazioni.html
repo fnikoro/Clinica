@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="static/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Clinica</title>
+</head>
+<body>
+<div class="d-flex flex-column align-items-stretch justify-content-between">
+    <div class="header d-flex flex-column flex-md-row align-items-center justify-content-md-between p-3 p-md-4 mb-3 text-center">
+        <div class="d-flex flex-md-row align-items-center justify-content-md-between">
+            <a href="index.html" class="text-decoration-none text-dark"><span class="fs-1">Clinica</span></a>
+        </div>
+        <nav class="headerNav">
+            <a href="chisiamo.html" class="px-2 style-none">Chi siamo</a>
+            <a href="login.html" class="px-2 style-none">Login</a>
+            <a href="signup.html" class="px-2 style-none">Registrati</a>
+        </nav>
+    </div>
+    <div class="cont container border-0 rounded shadow pt-5 mb-4 mt-4">
+        <h2 class="pb-4 text-center"><strong>Prenotazioni barambumbam</strong></h2>
+
+        <div class="form">
+            <div class="col-12 col-md-6 offset-md-3">
+                <div class="formWrapper">
+                    <form id="signUpForm">
+                        <div class="form-row d-flex flex-column flex-md-row mt-3">
+                            <div class="form-col col-12 col-md-4 px-2">
+                                <div class="labelWrapper">
+                                    <label for="reparti">Reparti(*)</label>
+                                </div>
+                                <div class="fieldWrapper">
+                                    <select id="reparti" name="reparti" class="form-control required">
+                                        <option value="0">Scegli un'opzione</option>
+                                        <option value="1">Oculista</option>
+                                        <option value="2">Gastroenterologia</option>
+                                        <option value="3">Ginecologia</option>
+                                        <option value="4">Urologia</option>
+                                        <option value="5">Cardiologia</option>
+                                    </select>
+                                </div>
+                                <div class="msg d-none">
+                                    <p class="error">Campo obbligatorio</p>
+                                </div>
+                            </div>
+                            <div class="form-col col-12 col-md-4 px-2">
+                                <div class="labelWrapper">
+                                    <label for="prenotazioni">Date e orari disponibili(*)</label>
+                                </div>
+                                <div class="fieldWrapper">
+                                    <select id="prenotazioni" name="prenotazioni" class="form-control required">
+                                        <option value="0">Scegli un'opzione</option>
+                                    </select>
+                                </div>
+                                <div class="msg d-none">
+                                    <p class="error">Campo obbligatorio</p>
+                                </div>
+                            </div>
+                            <div class="form-col col-12 col-md-4 px-2">
+                                <div class="labelWrapper">
+                                    <label for="medici">Medici(*)</label>
+                                </div>
+                                <div class="fieldWrapper">
+                                    <select id="medici" name="medici" class="form-control required">
+                                        <option value="0">Scegli un'opzione</option>
+                                        <option value="1">Dr. Rocco Giordano</option>
+                                        <option value="2">Dr. Abelardo Gallo</option>
+                                        <option value="3">Dr. Danilo Beneventi</option>
+                                        <option value="4">Dr. Arcangela Giordano</option>
+                                        <option value="5">Dr. Alfredo Milano</option>
+                                        <option value="6">Dr. Nora Baresi</option>
+                                        <option value="7">Dr. Ernesta Napolitano</option>
+                                    </select>
+                                </div>
+                                <div class="msg d-none">
+                                    <p class="error">Campo obbligatorio</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row mt-4 text-center pb-5">
+                            <div class="submitButton">
+                                <button type="submit" class="submitb btn btn-outline-dark mb-4">Invia</button>
+                            </div>
+                            <div class="alreadySignedUp">
+                                <span>Non ti sei ancora registrato? Clicca <a href="signup.html">qui</a> per registrarti.</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="static/js/userMenu.js" type="text/javascript"></script>
+</body>
+</html>
