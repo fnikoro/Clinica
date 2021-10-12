@@ -23,6 +23,11 @@ public class PazientiController {
         return pazientiService.getPazienti();
     }
 
+    @GetMapping("/get-paziente-by-id/{id}")
+    public Pazienti getPazientiById(@PathVariable("id") Integer id) {
+        return pazientiService.getPazientiById(id);
+    }
+
     @GetMapping("/get-pazienti/{email}")
     public Pazienti getPazientiByEmail(@PathVariable("email") String email) {
         return pazientiService.getPazientiByEmail(email);

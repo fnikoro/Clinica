@@ -12,12 +12,4 @@ public class ClinicaNnmmApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ClinicaNnmmApplication.class, args);
 	}
-
-//	@Bean
-//	public Jackson2ObjectMapperBuilder jacksonBuilder() {
-//		Jackson2ObjectMapperBuilder b = new Jackson2ObjectMapperBuilder();
-//		b.propertyNamingStrategy(PropertyNamingStrategy.);
-//		return b;
-//	}
-
 }

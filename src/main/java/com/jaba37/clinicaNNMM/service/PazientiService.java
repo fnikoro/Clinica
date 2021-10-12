@@ -24,6 +24,7 @@ public class PazientiService {
     public Pazienti getPazientiById(Integer id) {
         return PazientiDao.getPazientiById(id);
     }
+
     public List<Pazienti> getPazientiByEmail1(String email) {
         return PazientiDao.getPazientiByEmail1(email);
     }

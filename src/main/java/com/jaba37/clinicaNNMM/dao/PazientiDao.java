@@ -31,7 +31,6 @@ public class PazientiDao {
 
     public Pazienti getPazientiById(Integer id) {
         Session currentSession = entityManager.unwrap(Session.class);
-//        return currentSession.save(paziente);
         return currentSession.find(Pazienti.class, id);
     }
     public List<Pazienti> getPazientiByEmail1(String email) {
