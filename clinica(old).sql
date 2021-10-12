@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 12, 2021 alle 00:06
+-- Creato il: Ott 05, 2021 alle 15:21
 -- Versione del server: 10.4.20-MariaDB
--- Versione PHP: 7.3.29
+-- Versione PHP: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,10 +48,7 @@ INSERT INTO `medici` (`id_medico`, `id_reparto`, `nome`, `Cognome`, `numero_cell
 (4, 4, 'Arcangela ', 'Giordano', '03200114162', 'ArcangelaGiordano@teleworm.us', 'Bic3ic3zei'),
 (5, 5, 'Alfredo ', 'Milano', '03447072089', 'AlfredoMilano@jourrapide.com', 'Mohpoomei6'),
 (6, 1, 'Nora ', 'Baresi', '03497603824', 'NoraBaresi@armyspy.com', 'ohthiu7Ie6'),
-(7, 2, 'Ernesta ', 'Napolitano', '03943296474', 'ErnestaNapolitano@rhyta.com', 'aekaigahRi1'),
-(8, 3, 'Marco', 'Lisi', '34659874568', 'marco.lisi@gmail.com', 'MarcoLisi!'),
-(9, 4, 'Antonio', 'Parchi', '3214567898', 'antonio.parchi@gmail.com', 'AntonioParchi!'),
-(10, 5, 'Alessandro', 'Borghesi', '3659874562', 'alessandro.borghesi@gmail.com', 'AlessandroBorghesi!');
+(7, 2, 'Ernesta ', 'Napolitano', '03943296474', 'ErnestaNapolitano@rhyta.com', 'aekaigahRi1');
 
 -- --------------------------------------------------------
 
@@ -98,11 +95,11 @@ CREATE TABLE `reparti` (
 --
 
 INSERT INTO `reparti` (`id_reparto`, `reparto`) VALUES
-(1, 'Oculistica'),
-(2, 'Gastroenterologia'),
-(3, 'Ginecologia'),
-(4, 'Urologia'),
-(5, 'Cardiologia');
+(1, 'oculista'),
+(2, 'gastroenterologia'),
+(3, 'ginecologia'),
+(4, 'urologia'),
+(5, 'cardiologia');
 
 -- --------------------------------------------------------
 
@@ -114,15 +111,9 @@ CREATE TABLE `visite` (
   `id_visite` int(11) NOT NULL,
   `id_paziente` int(11) DEFAULT NULL,
   `id_medico` int(11) DEFAULT NULL,
-  `data_prenotazione` datetime DEFAULT NULL
+  `data_prenotazione` datetime DEFAULT NULL,
+  `durata_visita` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `visite`
---
-
-INSERT INTO `visite` (`id_visite`, `id_paziente`, `id_medico`, `data_prenotazione`) VALUES
-(1, 2, 4, '2021-10-27 15:30:00');
 
 --
 -- Indici per le tabelle scaricate
@@ -163,7 +154,7 @@ ALTER TABLE `visite`
 -- AUTO_INCREMENT per la tabella `medici`
 --
 ALTER TABLE `medici`
-  MODIFY `id_medico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_medico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `pazienti`
@@ -181,7 +172,7 @@ ALTER TABLE `reparti`
 -- AUTO_INCREMENT per la tabella `visite`
 --
 ALTER TABLE `visite`
-  MODIFY `id_visite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_visite` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Limiti per le tabelle scaricate
