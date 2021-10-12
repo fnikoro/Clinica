@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 13, 2021 alle 00:57
+-- Creato il: Ott 12, 2021 alle 00:06
 -- Versione del server: 10.4.20-MariaDB
 -- Versione PHP: 7.3.29
 
@@ -122,11 +122,7 @@ CREATE TABLE `visite` (
 --
 
 INSERT INTO `visite` (`id_visite`, `id_paziente`, `id_medico`, `data_prenotazione`) VALUES
-(1, 2, 4, '2021-10-27 15:30:00'),
-(22, 5, 7, '2021-10-30 12:30:00'),
-(37, 1, 2, '2021-10-19 11:00:00'),
-(44, 1, 9, '2021-10-20 11:30:00'),
-(45, 1, 2, '2021-10-21 15:00:00');
+(1, 2, 4, '2021-10-27 15:30:00');
 
 --
 -- Indici per le tabelle scaricate
@@ -156,7 +152,6 @@ ALTER TABLE `reparti`
 --
 ALTER TABLE `visite`
   ADD PRIMARY KEY (`id_visite`),
-  ADD UNIQUE KEY `data_prenotazione` (`data_prenotazione`),
   ADD KEY `paziente` (`id_paziente`),
   ADD KEY `medico` (`id_medico`);
 
@@ -186,7 +181,7 @@ ALTER TABLE `reparti`
 -- AUTO_INCREMENT per la tabella `visite`
 --
 ALTER TABLE `visite`
-  MODIFY `id_visite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_visite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Limiti per le tabelle scaricate
