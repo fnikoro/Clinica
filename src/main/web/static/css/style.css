@@ -4,8 +4,8 @@ body, html {
 
 .hero {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://www.clinicamarciano.it/wp-content/uploads/2021/01/Endoscopia-Clinica.jpg);
-	height: 40vh;
 	background-position: center;
+	height: 45vh;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -15,16 +15,19 @@ body, html {
 	width: 50%;
 }
 
+.cont {
+	background-color: rgb(245, 245, 245);
+}
+
 .footer {
-	background-color: rgba(221, 221, 221, 0.23);
-	width: 100%;
+	background-color: rgb(44, 44, 44);
 }
 
 .header {
 	font-family: 'Rubik', sans-serif;
 	width: 100%;
 	background: rgb(116,227,252);
-	background: linear-gradient(0deg, rgba(116,227,252,0) 0%, rgba(116,227,252,0.85) 85%);
+	background: linear-gradient(20deg, rgba(116,227,252,0) 0%, rgba(116,227,252,0.85) 85%);
 }
 
 .hero {
@@ -33,17 +36,22 @@ body, html {
 
 .herosub {
 	position: absolute;
-	left: 25%;
+	left: 5%;
+	right: 5%;
 	top: 25%;
+	bottom: 25%;
 }
 
 #chisiamo, #prenot {
 	font-family: 'Rubik', sans-serif;
 }
 
-.cont {
+#prenotazione {
+	width: 100%;
+}
+
+.rubik {
 	font-family: 'Rubik', sans-serif;
-	background-color: rgba(221, 221, 221, 0.23);
 }
 
 .msg {
@@ -72,14 +80,15 @@ select {
 	padding-bottom: 13px;
 	padding-left: 10px;
 }
+
 #loggedUserMenu{
-	position:fixed;
+	position: fixed;
 	max-width: 300px;
 	width: 80%;
 	right: -300px;
 	top: 0;
 	z-index: 1000;
-	background-color: rgb(116,227,252);
+	background-color: rgba(0, 0, 0, 0.27);
 	color: #fff;
 	transition: all 0.5s ease-in-out;
 	margin-top: 5%;
@@ -88,23 +97,9 @@ select {
 #loggedUserMenu.open{
 	right: 0
 }
-.iconm{
-	width: 5%;
-}
-.facebook{
-	max-width: 10%;
-}
-.instagram{
-	max-width: 10%;
-}
-.footer{
-	background-color:rgb(154,254,234) ;
-}
-.titolo {
-	padding-bottom: 5%;
-}
-/* ADDED */
-.display-none {
-	display: none;
-}
 
+@media (max-width: 996px) {
+	.hero {
+		height: 60vh;
+	}
+}

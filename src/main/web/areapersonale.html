@@ -3,60 +3,105 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
-    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="static/bootstrap.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>Clinica</title>
 </head>
 <body>
-    <div class="header d-flex flex-column flex-md-row align-items-center justify-content-md-between p-3 p-md-4 mb-3 border-bottom text-center">
-        <div class="d-flex flex-md-row align-items-center justify-content-md-between">
-            <a href="index.html"><img src="static/images/logo.svg" width="60px" height="60px"></a>
+    <div class="d-flex flex-column align-items-stretch justify-content-between">
+        <div class="header d-flex flex-column flex-md-row align-items-center justify-content-md-between p-3 p-md-4 mb-3 text-center border-bottom-0">
+            <div class="d-flex flex-md-row align-items-center justify-content-md-between">
+                <a href="index.html" class="text-decoration-none text-dark"><img src="static/images/sariflogo.svg" alt="Sarif Industries" width="170px" height="70px"></a>
+            </div>
+            <nav class="headerNav">
+                <a href="index.html#chisiamo" class="px-2 text-decoration-none text-black-50">Chi siamo</a>
+                <a href="login.html" class="px-2 text-decoration-none text-black-50">Login</a>
+                <a href="signup.html" class="px-2 text-decoration-none text-black-50">Registrati</a>
+            </nav>
         </div>
-        <nav class="headerNav">
-            <a href="chisiamo.html" class="px-2 style-none">Chi siamo</a>
-            <a href="login.html" class="px-2 style-none">Login</a>
-            <a href="signup.html" class="px-2 style-none">Registrati</a>
-        </nav>
-    </div>
 
-    <div class="cont container pt-5">
-        <div class="conthead pb-3">
-            <h1 class="text-center"><strong>Area Personale</strong></h1>
-        </div>
-        <div class="content border shadow p-4">
-            <div class="apnav d-flex flex-column flex-md-row align-items-center justify-content-md-between p-3 p-md-4 mb-3 text-center border-bottom">
-                <nav class="headerNav">
-                    <a href="prenotazioni.html" class="px-2 style-none">Prenotazioni</a>
-                    <a href="dati.html" class="px-2 style-none">I tuoi dati</a>
-                    <a href="contattaci.html" class="px-2 style-none">Contattaci</a>
-                </nav>
+        <div class="container p-5 rubik">
+            <div class="title pb-3">
+                <h1 class="text-center"><strong>Area Personale</strong></h1>
             </div>
-            <div class="d-flex flex-row justify-content-between">
-                <div>
-                    <div class="inftitle">
-                        <h2>I tuoi dati:</h2>
-                    </div>
-                    <div class="info">
-                        <h5 class="fullname">Nicolò Favia</h5>
-                        <h5 class="email">favianicolo@gmail.com</h5>
-                        <h5 class="number">3792280659</h5>
-                        <h5 class="address">Via Mario Rossi 43</h5>
-                        <h5 class="citycap">Bari 70123</h5>
-                    </div>
+            <div class="content border shadow p-4">
+                <div class="apnav d-flex flex-column flex-md-row align-items-center justify-content-md-between p-3 p-md-4 mb-3 text-center border-bottom">
+                    <nav class="headerNav">
+                        <span class="text-muted">Non sei ancora prenotato? </span><a href="prenotazioni.html" class="px-2 style-none">Prenotati.</a>
+                    </nav>
                 </div>
-                <div class="yourprenot">
-                    <div class="prenotitle">
-                        <h2>Le tue prenotazioni:</h2>
+                <div class="row-cols-2 d-flex flex-md-row flex-column">
+                    <div class="dati col-12 col-md-6 pb-3 pb-md-0 px-md-5">
+                        <div class="inftitle">
+                            <h2 class="text-center text-md-start">I tuoi dati:</h2>
+                        </div>
+                        <div class="info">
+                            <ul class="list-unstyled list-group">
+                                <li><span>Nome: </span><span class="text-muted" id="fullname">Nicolò Favia</span></li>
+                                <li><span>E-mail: </span><span class="text-muted" id="email">favianicolo@gmail.com</span></li>
+                                <li><span>Numero cellulare: </span><span class="text-muted" id="telefono">3792280659</span></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="prenot">
-                        <h5>NONE</h5>
+                    <div class="letuepre col-12 col-md-6 pt-5 pt-md-0">
+                        <div class="prenotitle">
+                            <h2 class="text-center">Le tue prenotazioni:</h2>
+                        </div>
+                        <div class="prenot">
+                            <div class="form">
+                                <div class="formWrapper">
+                                    <form id="preForm">
+                                        <div class="form-row d-flex flex-column align-items-center mt-md-3">
+                                            <div class="form-col d-none">
+                                                <div class="labelWrapper d-none">
+                                                    <label for="id_utente">Utente</label>
+                                                </div>
+                                                <div class="fieldWrapper d-none">
+                                                    <select id="id_utente" name="id_utente" >
+                                                        <option value="2" id="id_utente_confermato">Utente loggato</option>
+                                                    </select>
+                                                </div>
+                                                <div class="msg d-none d-none">
+                                                    <p class="error d-none">Campo obbligatorio</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-col col-8 px-2">
+                                                <div class="labelWrapper">
+                                                    <label for="prenotazione">Prenotazione</label>
+                                                </div>
+                                                <div class="fieldWrapper">
+                                                    <select id="prenotazione" name="prenotazione" class="form-control required">
+                                                        <option value="0">---</option>
+                                                    </select>
+                                                </div>
+                                                <div class="msg d-none">
+                                                    <p class="error">Campo obbligatorio</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-row mt-4 text-center">
+                                            <div class="submitButton">
+                                                <button type="submit" class="submitb btn btn-outline-dark mb-4">Invia</button>
+                                            </div>
+
+                                            <div class="submitButton">
+                                                <button id="schiacciaschiaccia" type="button" class="submitb btn btn-outline-dark mb-4">Carica Utente</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="static/js/areapersonale.js" type="text/javascript"></script>
 </body>
 </html>

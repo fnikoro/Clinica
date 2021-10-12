@@ -40,33 +40,6 @@ public class PazientiDao {
 
     }
 
-    /*
-    public Pazienti register(Pazienti paziente){
-        //Session currentSession = entityManager.unwrap(Session.class);
-        //return currentSession.createQuery("INSERT INTO Pazienti(nome, cognome, indirizzo, localita, cap, numero_cellulare, email, password)", Pazienti.class).getResultList();
-        String sql = "insert into clinica.Paziente(nome, cognome, indirizzo, localita, cap, numero_cellulare, email, password) values(?,?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sql, new Object[] {
-                paziente.getNome(),
-                paziente.getCognome(),
-                paziente.getIndirizzo(),
-                paziente.getLocalita(),
-                paziente.getCap(),
-                paziente.getNumero_cellulare(),
-                paziente.getEmail(),
-                paziente.getPassword()});
-        return paziente;
-    }
-
-    public Pazienti login(Pazienti paziente){
-        String sql = "insert into paziente values(?,?)";
-        jdbcTemplate.update(sql, new Object[]{
-                paziente.getEmail(),
-                paziente.getPassword()
-        });
-        return paziente;
-    }
-*/
-
     public Pazienti getPazientiByEmail(String email) throws NoResultException {
         Session currentSession = entityManager.unwrap(Session.class);
         Query<Pazienti> query = currentSession.createQuery("FROM Pazienti WHERE email = :email", Pazienti.class);

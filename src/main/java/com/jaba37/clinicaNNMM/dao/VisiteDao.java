@@ -1,5 +1,6 @@
 package com.jaba37.clinicaNNMM.dao;
 
+import com.jaba37.clinicaNNMM.model.Pazienti;
 import com.jaba37.clinicaNNMM.model.Visite;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @Repository
