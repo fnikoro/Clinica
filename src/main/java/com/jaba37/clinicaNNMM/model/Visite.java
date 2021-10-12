@@ -1,16 +1,23 @@
 package com.jaba37.clinicaNNMM.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Entity
 @Table(name = "visite")
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class Visite {
 
     @Id
@@ -18,34 +25,41 @@ public class Visite {
     @Column(name = "id_visite")
     private Integer id_visite;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "GMT+02:00")
     @Column(name = "data_prenotazione")
-    private Timestamp data_prenotazione;
+    private Date data_prenotazione;
 
     @JoinColumn(name = "id_paziente")
     @ManyToOne
-    @JsonIgnoreProperties("visite")
+//    @JsonIgnoreProperties("visite")
+    @JsonIgnore
     private Pazienti pazienti;
 
     @JoinColumn(name = "id_medico")
     @ManyToOne
-    @JsonIgnoreProperties("visite")
+//    @JsonIgnoreProperties("visite")
+    @JsonIgnore
     private Medici medici;
 
     public Integer getId_visite() {
-        return id_visite;
+        return this.id_visite;
     }
 
-    public LocalDateTime getData_prenotazione() {
-        return data_prenotazione.toLocalDateTime();
+//    public LocalDateTime getData_prenotazione() {
+//        return this.data_prenotazione.toLocalDateTime();
+//    }
+
+
+    public ZonedDateTime getData_prenotazione() {
+        return this.data_prenotazione.toInstant().atZone(ZoneId.of("Europe/Rome"));
     }
 
     public Pazienti getPazienti() {
-        return pazienti;
+        return this.pazienti;
     }
 
     public Medici getMedici() {
-        return medici;
+        return this.medici;
     }
 
     public Integer getMediciId() {

@@ -1,12 +1,16 @@
 package com.jaba37.clinicaNNMM.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "pazienti", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class Pazienti {
 
     @Id
@@ -44,7 +48,7 @@ public class Pazienti {
 
 
     public Integer getId_paziente() {
-        return id_paziente;
+        return this.id_paziente;
     }
 
     public void setId_paziente(Integer id_paziente) {
@@ -52,7 +56,7 @@ public class Pazienti {
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public void setNome(String nome) {
@@ -60,7 +64,7 @@ public class Pazienti {
     }
 
     public String getCognome() {
-        return cognome;
+        return this.cognome;
     }
 
     public void setCognome(String cognome) {
@@ -68,7 +72,7 @@ public class Pazienti {
     }
 
     public String getIndirizzo() {
-        return indirizzo;
+        return this.indirizzo;
     }
 
     public void setIndirizzo(String indirizzo) {
@@ -76,7 +80,7 @@ public class Pazienti {
     }
 
     public String getLocalita() {
-        return localita;
+        return this.localita;
     }
 
     public void setLocalita(String localita) {
@@ -84,7 +88,7 @@ public class Pazienti {
     }
 
     public String getCap() {
-        return cap;
+        return this.cap;
     }
 
     public void setCap(String cap) {
@@ -92,7 +96,7 @@ public class Pazienti {
     }
 
     public String getNumero_cellulare() {
-        return numero_cellulare;
+        return this.numero_cellulare;
     }
 
     public void setNumero_cellulare(String numero_cellulare) {
@@ -100,7 +104,7 @@ public class Pazienti {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -108,7 +112,7 @@ public class Pazienti {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -116,7 +120,7 @@ public class Pazienti {
     }
 
     public List<Visite> getVisitis() {
-        return visitis;
+        return this.visitis;
     }
 
     public void setVisitis(List<Visite> visitis) {

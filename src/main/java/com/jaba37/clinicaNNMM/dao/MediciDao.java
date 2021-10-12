@@ -3,6 +3,7 @@ package com.jaba37.clinicaNNMM.dao;
 import com.jaba37.clinicaNNMM.model.Medici;
 import com.jaba37.clinicaNNMM.model.Visite;
 
+import com.jaba37.clinicaNNMM.util.NextSlotAdjuster;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static com.jaba37.clinicaNNMM.model.Medici.NUMERO_BLOCCHI_ORARI;
@@ -76,7 +78,7 @@ public class MediciDao {
         int controlloInvocazioneBreak = 0;
 
         for (int i = 0; i < NUMERO_GIORNI; i++) {
-            if(controlloInvocazioneBreak != 0){
+            if (controlloInvocazioneBreak != 0) {
                 break;
             }
 
@@ -88,7 +90,7 @@ public class MediciDao {
                 }
                 indicePosizioneListaOrario++;
 
-                if(indicePosizioneListaOrario == listaMediciDisponibili.get(id).getListaOrari().size()) {
+                if (indicePosizioneListaOrario == listaMediciDisponibili.get(id).getListaOrari().size()) {
                     controlloInvocazioneBreak++;
                     break;
                 }
@@ -99,43 +101,31 @@ public class MediciDao {
 
     //ADDED
     public List<Medici> getMediciByIdReparto(Integer id) {
-    Session currentSession = entityManager.unwrap(Session.class);
-    Query<Medici> query = currentSession.createQuery("FROM Medici  WHERE reparto.id_reparto = " + id , Medici.class);
+        Session currentSession = entityManager.unwrap(Session.class);
+        Query<Medici> query = currentSession.createQuery("FROM Medici  WHERE reparto.id_reparto = " + id, Medici.class);
 //    query.setParameter("id", id);
-    return query.getResultList();
+        return query.getResultList();
     }
 
     //ADDED
     private void createMediciDisponibilita(Medici medico) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(medico.getDateFormatter());
-        LocalDate today = LocalDate.now();
-        LocalDate startOfBooking = today.plusDays(7);
-        LocalDate endOfBooking = today.plusDays(37);
-        int daysBetween = (int) ChronoUnit.DAYS.between(startOfBooking, endOfBooking);
+        ZonedDateTime dateNow = ZonedDateTime.now(ZoneId.of("Europe/Rome"));
 
-        LocalDateTime dataOra = startOfBooking.atTime(8, 0);
-        String formatDateTime;
+        ZonedDateTime startBooking = dateNow.plusDays(7);
+        ZonedDateTime endBooking = dateNow.plusDays(37);
+        int daysBetween = (int) ChronoUnit.DAYS.between(startBooking, endBooking);
 
-        for (int i = 0; i <= daysBetween; i++) {
+        ZonedDateTime dateOffsetProgress = startBooking.withHour(7).withMinute(30).withSecond(0);
+
+        NextSlotAdjuster nextSlot = new NextSlotAdjuster();
+
+
+        for (int i = 0; i < daysBetween; i++) {
             for (int k = 0; k < NUMERO_BLOCCHI_ORARI; k++) {
-
-                if (dataOra.getDayOfWeek() == DayOfWeek.SUNDAY) {
-                    dataOra = dataOra.plusDays(1);
-                    dataOra = dataOra.withHour(8);
-                    dataOra = dataOra.withMinute(0);
-                    break;
-                }
-                if ((dataOra.getHour() == 13) && (dataOra.getMinute() == 0)) {
-                    dataOra = dataOra.plusHours(1);
-                }
-                formatDateTime = dataOra.format(formatter);
+                dateOffsetProgress = dateOffsetProgress.with(nextSlot);
+                String formatDateTime = dateOffsetProgress.format(formatter);
                 medico.add(formatDateTime);
-                dataOra = dataOra.plusMinutes(30);
-                if ((dataOra.getHour() == 18) && (dataOra.getMinute() == 0)) {
-                    dataOra = dataOra.plusDays(1);
-                    dataOra = dataOra.withHour(8);
-                    dataOra = dataOra.withMinute(0);
-                }
             }
         }
     }

@@ -1,11 +1,15 @@
 package com.jaba37.clinicaNNMM.model;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "medici")
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class Medici {
 
     @Id
@@ -86,21 +90,21 @@ public class Medici {
     }
 
     public Object[][] getDisponibilita() {
-        return disponibilita;
+        return this.disponibilita;
     }
 
     //ADDED
     public boolean getDisponibilitaAtIndexInDayJ(Integer j, Integer index) {
-        return (boolean) disponibilita[j][index];
+        return (boolean) this.disponibilita[j][index];
     }
 
     //ADDED
     public List<String> getListaOrari() {
-        return listaOrari;
+        return this.listaOrari;
     }
 
     public String getListaOrariAtIndex (Integer index){
-        return listaOrari.get(index);
+        return this.listaOrari.get(index);
     }
 
     //ADDED
@@ -108,8 +112,8 @@ public class Medici {
         return this.DATE_FORMATTER;
     }
     //ADDED
-    public boolean add(Object o) {
-        return this.listaOrari.add((String) o);
+    public boolean add(String orario) {
+        return this.listaOrari.add(orario);
     }
 
     public void setId_medico(Integer id_medico) {
