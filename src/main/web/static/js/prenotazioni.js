@@ -95,7 +95,7 @@ function orariSelect() {
     fetch(urlGetListaOrariMedico).then(function (response) {
         return response.json()
     }).then(function (data) {
-        dataFetchOrari = data;
+        // dataFetchOrari = data;
         let dat = Object.values(data)
         console.log(dat)
 

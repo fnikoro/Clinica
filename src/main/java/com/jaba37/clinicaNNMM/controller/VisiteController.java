@@ -59,12 +59,13 @@ public class VisiteController {
         visiteService.saveOrUpdateVisite(visita);
     }
 
-    @DeleteMapping("/cancella-visite")
+    @DeleteMapping("/delete-visite")
     public void deleteVisite(@RequestBody @NotNull List<Visite> visitis) {
         visiteService.deleteVisite(visitis);
     }
 
-    @DeleteMapping("/cancella-visite/{id}")
+    @CrossOrigin
+    @DeleteMapping("/delete-visite/{id}")
     public void deleteVisiteById(@PathVariable("id") Integer id) {
         visiteService.deleteVisiteById(id);
     }

@@ -1,26 +1,20 @@
 let form = document.querySelector('#preForm')
 let fields = document.querySelectorAll(".required")
-let selectPrenotazioni = document.getElementById("prenotazione")
-let primoId = document.getElementById("primo")
 let scala = document.querySelector('#prenotazione')
-// let schiacciaStoBottone = document.querySelector('#schiacciaschiaccia')
 let id_utente_confermato = document.querySelector("#id_utente_confermato").value;
 let name = document.querySelector('#fullname')
 let email = document.querySelector('#email')
 let phone = document.querySelector('#telefono')
-
+let id_visita_selezionata;
 
 window.addEventListener('load', function (event) {
     userInfo();
     prenotazioniSelect();
-
-    // schiacciaStoBottone.addEventListener("click", prenotazioniSelect);
-    // event.preventDefault();
 })
 
 form.addEventListener('submit', function (event) {
     let formValidity = true;
-    // event.preventDefault();
+    event.preventDefault()
 
     fields.forEach(function (el, i, ar) {
         if (el.value === 0) {
@@ -42,11 +36,21 @@ form.addEventListener('submit', function (event) {
         event.preventDefault()
     }
 
-    let infoPrenotazione = document.querySelector("#informazionePrenotazione");
-    // var data = JSON.stringify({
-    //     // id_reparto: id_reparto.value,
-    //     data_prenotazione: data_prenotazione.value
-    // });
+    let urlDeleteVisitaById = 'http://localhost:8080/api/delete-visite/' + id_visita_selezionata;
+
+    fetch(urlDeleteVisitaById, {
+      method: 'DELETE',
+        mode: 'cors',
+        headers: {
+            "Content-Type": "application/json ,Access-Control-Allow-Origin",
+
+        },
+    })
+        .then(function (response) {
+            return response.json()
+        }).then(function (data3) {
+
+        })
 })
 
 function userInfo() {
@@ -55,7 +59,6 @@ function userInfo() {
     fetch(urlGetPazienteById).then(function (response) {
         return response.json()
     }).then(function (data3) {
-        // let dataArray = Object.values(data3)
         name.innerHTML = `${data3.nome}, ${data3.cognome}`
         email.innerHTML = `${data3.email}`
         phone.innerHTML = `${data3.numero_cellulare}`
@@ -74,6 +77,11 @@ function prenotazioniSelect() {
         for(let i = 0; i < data.length; i++) {
             let optionX = document.createElement("option")
             optionX.innerHTML = 'Id visita: ' + `${data[i].id_visite}` + ' / Id medico: ' +  `${data[i].medici_id}` + ' / Data prenotazione: ' + `${data[i].data_prenotazione}`
+
+            // optionX.id = "id-opzione"+i
+
+            id_visita_selezionata = `${data[i].id_visite}`
+
             scala.appendChild(optionX)
         }
     })
