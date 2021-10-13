@@ -7,6 +7,7 @@ import com.jaba37.clinicaNNMM.model.Visite;
 import com.jaba37.clinicaNNMM.service.MediciService;
 import com.jaba37.clinicaNNMM.service.PazientiService;
 import com.jaba37.clinicaNNMM.service.VisiteService;
+import com.jaba37.clinicaNNMM.util.MailSenderComponent;
 import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -27,6 +28,9 @@ public class VisiteController {
 
     @Autowired
     private PazientiService pazientiService;
+
+    @Autowired
+    private MailSenderComponent component;
 
     @GetMapping("/get-visite")
     public List<Visite> getVisite() {
@@ -53,8 +57,10 @@ public class VisiteController {
         if(id_medico != null && id_paziente != null ) {
             Medici medico = mediciService.getMediciById(id_medico);
             visita.setMedici(medico);
+//            component.send(medico.getEmail(),"Questa è una mail di prova","Contenuto mail di prova");
             Pazienti paziente = pazientiService.getPazientiById(id_paziente);
             visita.setPazienti(paziente);
+            component.send(paziente.getEmail(),"Questa è una mail di prova","Contenuto mail di prova");
         }
         visiteService.saveOrUpdateVisite(visita);
     }
@@ -67,6 +73,14 @@ public class VisiteController {
     @CrossOrigin
     @DeleteMapping("/delete-visite/{id}")
     public void deleteVisiteById(@PathVariable("id") Integer id) {
+        Visite visita = visiteService.getVisiteById(id);
+
+        Medici medico = visita.getMedici();
+        Pazienti paziente = visita.getPazienti();
+
+        component.send(medico.getEmail(),"Una prenotazione nei tuoi confronti è stata cancellata ","\nContenuto mail di prova");
+        component.send(paziente.getEmail(),"Hai cancellato una prenotazione ","\nContenuto mail di prova");
+
         visiteService.deleteVisiteById(id);
     }
 }

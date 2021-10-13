@@ -17,14 +17,14 @@ public class ClinicaNnmmApplication {
 		SpringApplication.run(ClinicaNnmmApplication.class, args);
 	}
 
-	@EventListener(ApplicationReadyEvent.class)
-	public void triggerMail() {
+//	@EventListener(ApplicationReadyEvent.class)
+//	public void triggerMail() {
+//
+//		for (int i = 0; i < 1; i++) {
+//			component.send("seba.sebastio5@gmail.com", "patata", "si");
+//			System.out.println("Spammando... ");
+//		}
+//		System.out.println("Bro finito capolinea caput");
 
-		for (int i = 0; i < 1; i++) {
-			component.send("seba.sebastio5@gmail.com", "patata", "si");
-			System.out.println("Spammando... ");
-		}
-		System.out.println("Bro finito capolinea caput");
-
-	}
+//	}
 }
