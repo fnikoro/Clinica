@@ -14,6 +14,7 @@ window.addEventListener('load', function (event) {
 
 form.addEventListener('submit', function (event) {
     let formValidity = true;
+    event.preventDefault()
 
     fields.forEach(function (el, i, ar) {
         if (el.value === 0) {
@@ -60,7 +61,6 @@ form.addEventListener('submit', function (event) {
                 if (err === "server")
                     console.log("")
             })
-        event.preventDefault()
 })
 
 function userInfo() {

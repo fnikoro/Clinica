@@ -74,7 +74,7 @@ public class VisiteController {
 
             component.send(paziente.getEmail(),"Questa è una mail di prova",datiPrenotazione);
         }
-       System.out.println("\n Hai inserito dei null!");
+       System.out.println("\n ....");
     }
 
     @DeleteMapping("/delete-visite")

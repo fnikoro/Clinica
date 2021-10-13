@@ -16,7 +16,7 @@ window.addEventListener('load', function (event) {
 
 form.addEventListener('submit', function (event) {
     let formValidity = true;
-    // event.preventDefault();
+    event.preventDefault();
 
     fields.forEach(function (el, i, ar) {
         if (el.value === 0) {

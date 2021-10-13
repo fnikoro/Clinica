@@ -21,6 +21,7 @@ window.addEventListener('load', function (event) {
         })
 
         if (formValidity === false) {
+
             console.log("Erorri trovati, qualquadra che non rotonda")
             event.preventDefault()
         }
