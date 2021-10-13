@@ -58,12 +58,12 @@ window.addEventListener('load', function (event) {
                     console.log("Status: " + resp.status)
                     return Promise.reject("server")
                 } else {
-                    console.log("Registrazione cacata")
+                    console.log("Registrazione effettuata con successo. ")
                 }
             })
             .catch(err => {
                 if (err === "server")
-                    console.log("Email gia' esistente, errore, suca")
+                    console.log("Email gia' esistente, registrazione fallita.")
             })
         event.preventDefault()
 
