@@ -14,7 +14,6 @@ window.addEventListener('load', function (event) {
 
 form.addEventListener('submit', function (event) {
     let formValidity = true;
-    event.preventDefault()
 
     fields.forEach(function (el, i, ar) {
         if (el.value === 0) {
@@ -36,7 +35,7 @@ form.addEventListener('submit', function (event) {
         event.preventDefault()
     }
 
-    let urlDeleteVisitaById = 'http://localhost:8080/api/delete-visite/' + id_visita_selezionata;
+    let urlDeleteVisitaById = 'http://localhost:8080/api/delete-visite/' + scala.value;
 
     fetch(urlDeleteVisitaById, {
       method: 'DELETE',
@@ -48,9 +47,20 @@ form.addEventListener('submit', function (event) {
     })
         .then(function (response) {
             return response.json()
-        }).then(function (data3) {
-
+        }).then(function (data3){
+            if (response.status !== 200) {
+                console.log("Status: " + resp.status)
+                return Promise.reject("server")
+            } else {
+                console.log(data3)
+                console.log("Input registrato, attenzione ai null")
+            }
         })
+            .catch(err => {
+                if (err === "server")
+                    console.log("")
+            })
+        event.preventDefault()
 })
 
 function userInfo() {
@@ -78,9 +88,7 @@ function prenotazioniSelect() {
             let optionX = document.createElement("option")
             optionX.innerHTML = 'Id visita: ' + `${data[i].id_visite}` + ' / Id medico: ' +  `${data[i].medici_id}` + ' / Data prenotazione: ' + `${data[i].data_prenotazione}`
 
-            // optionX.id = "id-opzione"+i
-
-            id_visita_selezionata = `${data[i].id_visite}`
+            optionX.value = `${data[i].id_visite}`
 
             scala.appendChild(optionX)
         }
