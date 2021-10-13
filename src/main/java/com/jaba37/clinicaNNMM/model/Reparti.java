@@ -1,5 +1,6 @@
 package com.jaba37.clinicaNNMM.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -20,7 +21,7 @@ public class Reparti {
     private String reparto;
 
     @JoinColumn(name = "id_reparto")
-    @JsonIgnoreProperties("reparti")
+    @JsonIgnore
     @OneToOne
     private Medici medico;
 

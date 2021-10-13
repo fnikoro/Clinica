@@ -3,6 +3,7 @@ package com.jaba37.clinicaNNMM.controller;
 
 import com.jaba37.clinicaNNMM.model.Medici;
 import com.jaba37.clinicaNNMM.model.Pazienti;
+import com.jaba37.clinicaNNMM.model.Reparti;
 import com.jaba37.clinicaNNMM.model.Visite;
 import com.jaba37.clinicaNNMM.service.MediciService;
 import com.jaba37.clinicaNNMM.service.PazientiService;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @CrossOrigin
@@ -57,12 +59,22 @@ public class VisiteController {
         if(id_medico != null && id_paziente != null ) {
             Medici medico = mediciService.getMediciById(id_medico);
             visita.setMedici(medico);
-//            component.send(medico.getEmail(),"Questa è una mail di prova","Contenuto mail di prova");
+
+            Reparti reparto = medico.getReparto();
+
             Pazienti paziente = pazientiService.getPazientiById(id_paziente);
             visita.setPazienti(paziente);
-            component.send(paziente.getEmail(),"Questa è una mail di prova","Contenuto mail di prova");
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(medico.getDateFormatter());
+            String dataFormattata = visita.getData_prenotazione().format(formatter);
+
+
+            visiteService.saveOrUpdateVisite(visita);
+            String datiPrenotazione = "La prenotazione n. "+ visita.getId_visite() +", effettuata dal Sig.r "+ paziente.getCognome() + " " + paziente.getNome() + ", prenotata presso il Dott.r " + medico.getCognome() + " " + medico.getNome() +", del Reparto di " + reparto.getReparto() + ", in data " + dataFormattata + ", è stata appena cancellata. ";
+
+            component.send(paziente.getEmail(),"Questa è una mail di prova",datiPrenotazione);
         }
-        visiteService.saveOrUpdateVisite(visita);
+       System.out.println("\n Hai inserito dei null!");
     }
 
     @DeleteMapping("/delete-visite")
@@ -77,9 +89,16 @@ public class VisiteController {
 
         Medici medico = visita.getMedici();
         Pazienti paziente = visita.getPazienti();
+        Reparti reparto = medico.getReparto();
 
-        component.send(medico.getEmail(),"Una prenotazione nei tuoi confronti è stata cancellata ","\nContenuto mail di prova");
-        component.send(paziente.getEmail(),"Hai cancellato una prenotazione ","\nContenuto mail di prova");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(medico.getDateFormatter());
+        String dataFormattata = visita.getData_prenotazione().format(formatter);
+
+        String datiPrenotazione = "La prenotazione n. "+ visita.getId_visite() +", effettuata dal Sig.r "+ paziente.getCognome() + " " + paziente.getNome() + ", prenotata presso il Dott.r " + medico.getCognome() + " " + medico.getNome() +", del Reparto di " + reparto.getReparto() + ", in data " + dataFormattata + ", è stata appena cancellata. ";
+
+        component.send(medico.getEmail(),"Una prenotazione nei tuoi confronti è stata cancellata ",datiPrenotazione);
+        component.send(paziente.getEmail(),"Hai cancellato una prenotazione ",datiPrenotazione);
 
         visiteService.deleteVisiteById(id);
     }

@@ -32,23 +32,23 @@ public class Medici {
     @Column(name = "password")
     private String password;
 
-    //ADDED
+    
     @Transient
     public static final int NUMERO_BLOCCHI_ORARI = 18;
 
-    //ADDED
+    
     @Transient
     public static final int NUMERO_GIORNI = 30;
 
-    //ADDED
+    
     @Transient
     private Object[][] disponibilita = new Object[NUMERO_GIORNI][NUMERO_BLOCCHI_ORARI];
 
-    //ADDED
+    
     @Transient
     private List<String> listaOrari = new ArrayList<>();
 
-    //ADDED
+    
     @Transient
     private final String DATE_FORMATTER = "yyyy-MM-dd HH:mm:ss";
 //    private final String DATE_FORMATTER = "dd-MM-yyyy HH:mm:ss";
@@ -60,7 +60,7 @@ public class Medici {
     @OneToOne
     private Reparti reparto;
 
-    //ADDED
+    
     public void setDisponibilitaAtIndexInDayJ(Integer j, Integer index, boolean value) {
         this.disponibilita[j][index] = value;
     }
@@ -93,12 +93,12 @@ public class Medici {
         return this.disponibilita;
     }
 
-    //ADDED
+    
     public boolean getDisponibilitaAtIndexInDayJ(Integer j, Integer index) {
         return (boolean) this.disponibilita[j][index];
     }
 
-    //ADDED
+    
     public List<String> getListaOrari() {
         return this.listaOrari;
     }
@@ -107,11 +107,16 @@ public class Medici {
         return this.listaOrari.get(index);
     }
 
-    //ADDED
+    
     public String getDateFormatter() {
         return this.DATE_FORMATTER;
     }
-    //ADDED
+
+    public Reparti getReparto() {
+        return this.reparto;
+    }
+
+    
     public boolean add(String orario) {
         return this.listaOrari.add(orario);
     }

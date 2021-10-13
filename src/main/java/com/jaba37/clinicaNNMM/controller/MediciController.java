@@ -21,25 +21,25 @@ public class MediciController {
         return mediciService.getMedici();
     }
 
-    //ADDED
+    
     @GetMapping("/get-medici-disponibili")
     public List<Medici> getMediciDisponibili() {
         return mediciService.getMediciDisponibili();
     }
 
-    //ADDED
+    
     @GetMapping("/get-lista-orari-medico/{id}")
     public List<String> getListaOrariDisponibiliByMedicoId(@PathVariable("id") Integer id) {
         return mediciService.getListaOrariDisponibiliByMedicoId(id);
     }
 
-//    //ADDED
+//    
 //    @GetMapping("/get-medici-by-reparto/{id}")
 //    public List<Medici> getMediciByIdReparto(@RequestParam(value="id",required = true) /*@PathVariable("id")*/ Integer id) {
 //        return mediciService.getMediciByIdReparto(id);
 //    }
 
-    //ADDED
+    
     @GetMapping("/get-medici-by-reparto/{id}")
     public List<Medici> getMediciByIdReparto(/*@RequestParam(value="id",required = true)*/ @PathVariable("id") Integer id) {
         return mediciService.getMediciByIdReparto(id);

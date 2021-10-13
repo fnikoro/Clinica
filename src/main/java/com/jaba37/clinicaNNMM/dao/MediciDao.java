@@ -32,7 +32,7 @@ public class MediciDao {
         return currentSession.createQuery("FROM Medici", Medici.class).getResultList();
     }
 
-    //ADDED
+    
     public List<Medici> getMediciDisponibili() {
         List<Medici> listaMedici = getMedici();
         List<Medici> listaMediciDisponibili = new ArrayList<>();
@@ -69,7 +69,7 @@ public class MediciDao {
         return currentSession.find(Medici.class, id);
     }
 
-    //ADDED
+    
     public List<String> getListaOrariDisponibiliByMedicoId(Integer id) {
 
         List<String> listaOrariDisponibili = new ArrayList<>();
@@ -99,7 +99,7 @@ public class MediciDao {
         return listaOrariDisponibili;
     }
 
-    //ADDED
+    
     public List<Medici> getMediciByIdReparto(Integer id) {
         Session currentSession = entityManager.unwrap(Session.class);
         Query<Medici> query = currentSession.createQuery("FROM Medici  WHERE reparto.id_reparto = " + id, Medici.class);
@@ -107,10 +107,10 @@ public class MediciDao {
         return query.getResultList();
     }
 
-    //ADDED
+    
     private void createMediciDisponibilita(Medici medico) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(medico.getDateFormatter());
-        ZonedDateTime dateNow = ZonedDateTime.now(ZoneId.of("Europe/Rome"));
+        ZonedDateTime dateNow = ZonedDateTime.now(ZoneId.of("GMT+02:00"));
 
         ZonedDateTime startBooking = dateNow.plusDays(7);
         ZonedDateTime endBooking = dateNow.plusDays(37);
@@ -130,7 +130,7 @@ public class MediciDao {
         }
     }
 
-    //ADDED
+    
     private void initializeDisponibilita(List<Medici> medicis) {
         for (int i = 0; i < medicis.size(); i++) {
             createMediciDisponibilita(medicis.get(i));
@@ -142,7 +142,7 @@ public class MediciDao {
         }
     }
 
-    //ADDED
+    
     private void updateDisponibilitaMedici(List<Medici> medicis) {
         String dataPrenotazione_Visita;
         int indiceListaOrario;

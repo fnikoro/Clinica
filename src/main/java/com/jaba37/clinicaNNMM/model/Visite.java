@@ -51,7 +51,7 @@ public class Visite {
 
 
     public ZonedDateTime getData_prenotazione() {
-        return this.data_prenotazione.toInstant().atZone(ZoneId.of("Europe/Rome"));
+        return this.data_prenotazione.toInstant().atZone(ZoneId.of("GMT+02:00"));
     }
 
     public Pazienti getPazienti() {
