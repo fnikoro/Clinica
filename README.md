@@ -14,9 +14,10 @@ dipendenze lato **Maven**, invece, per gestire le dipendenze lato Front-end, è 
 
 Tramite Spring Boot abbiamo anche gestito diverse API che abbiamo sfruttato per effettuare passaggi di dati tra 
 Front-End e Back-End, facendoli prima passare da Java.
+
 ---
 
-### Per poter avviare il progetto in locale è necessario eseguire questi step:
+#### Per poter avviare il progetto in locale è necessario eseguire questi step:
 
 1) Scaricare il file "clinica.sql"
 2) Creare uno Schema in locale intitolato "clinica"
