@@ -7,12 +7,12 @@ server in locale per il Front-end del nostro progetto, **GitHub** come piattafor
 permettedonci di lavorare assieme e rimanere sempre aggiornati.
 
 Il progetto è stato scritto con **Java 11**, **HTML5**, **CSS3**, **Javascript**, **MySQL** ed **HQL**, inoltre abbiamo fatto uso di due
-framework, **Spring Boot v2.3.5**, **Bootstrap v5.1.2** e diverse librerie base appartenenti ai rispettivi linguaggi.
+framework, **Spring v2.3.5**, **Bootstrap v5.1.2** e diverse librerie base appartenenti ai rispettivi linguaggi.
 
 Per gestire il livello ORM è stato utilizzato **Hibernate**, attraverso Spring Boot, con cui ci siamo occupati di gestire le 
 dipendenze lato **Maven**, invece, per gestire le dipendenze lato Front-end, è stato utilizzato **NPM** tramite NodeJS.
 
-Tramite Spring Boot abbiamo anche gestito diverse API che abbiamo sfruttato per effettuare passaggi di dati tra 
+Tramite Spring abbiamo anche gestito diverse API che abbiamo sfruttato per effettuare passaggi di dati tra 
 Front-End e Back-End, facendoli prima passare da Java.
 
 ---
